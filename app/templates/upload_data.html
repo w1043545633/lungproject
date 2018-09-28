@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block function %}
+<div class="container">
+	<div class="function-title">
+		<h1>系统提供的功能</h1>
+		<p>根据不同使用场景设计了四种服务，为医生和数据处理人员提供了友好的界面以及流畅的体验</p>
+	</div>
+	<div class="function-doctor">
+		<div class="col-md-3 col-md-offset-5">
+			<div class="thumbnail">
+				<img src="{{ url_for('static', filename='img/upload2.jpg') }}">
+				<div class="caption">
+					<p class="function-info">上传病人已处理的测序信息。</p>
+					<p class="function-process"><a href="{{ url_for('main.upload_exdata') }}" class="btn btn-primary" role="button">
+						<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+						数据上传
+					</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{{ super() }}
+{% endblock %}

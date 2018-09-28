@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block navbar %}
+<nav class="navbar base-nav">
+	<div class="container-fluid">
+		<div class="col-md-3 col-md-offset-5 ">
+			<a href="#" class="h1-a navbar-brand">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				理性精准用药推荐系统
+			</a>
+		</div>
+	</div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="div-login-header">
+		<h1>欢迎登录</h1>
+	</div>
+	<div class="div-login-container">
+		{{ wtf.quick_form(form) }}
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="div-login-container">
+		<div class="footer-login">
+			<div class="resetpassword">
+				<a href="#" class="navbar-brand">忘记密码？</a>
+			</div>
+		</div>
+		<div class="base-footer" style="background-color: #fff">
+			<p>农业信息工程湖北省重点实验室</p>
+			<p>湖北省武汉市狮子山街1号华中农业大学</p>
+			<p>联系电话：+86-27-8728-0877</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

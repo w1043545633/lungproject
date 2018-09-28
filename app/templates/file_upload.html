@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="function-header">
+		<h1>请输入相关上传信息</h1>
+		<p>请务必将表单信息填写完整</p>
+	</div>
+	<div class="container">
+
+		<div class="col-md-12" id="pinfo">
+		</div>
+
+		<form class="form-inline col-md-12" id="file-upload" enctype="multipart/form-data">
+			<div class="form-group col-md-3 col-md-offset-1 file-group">
+				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				<input type="text" class="form-control file-input" placeholder="上传者姓名">
+			</div>
+			<div class="form-group col-md-4">
+				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				<input type="text" class="form-control file-input" placeholder="处理数据人员姓名">
+			</div>
+			<div class="form-group col-md-4">
+				<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+				<input type="text" class="form-control file-input" placeholder="样本序列号">
+			</div>
+			<div class="form-group col-md-5 col-md-offset-1">
+				<label class="control-label col-md-3 ">是否公开：</label>
+				<div class="col-md-3" id="is_public">
+					<input type="radio" name="public" class="" value="yes">是
+					<input type="radio" name="public" class="" value="no">否
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<label class="control-label col-md-3">数据类型：</label>
+				<div class="col-md-5" id="data_type">
+					<input type="radio" name="data_type" class="" value="rna-seq">RNA-Seq
+					<input type="radio" name="data_type" class="" value="chip-seq">Chip-Seq
+				</div>
+			</div>
+			<div class="form-group col-md-5">
+				<input type="file" name="">
+			</div>
+
+		</form>
+	</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript">
+	$(function() {
+		var data = {
+			"save_id": $.cookie("save_id")
+		};
+
+		$.ajax({
+			type:'POST',
+			url:'/file_pinfo',
+			data:data,
+			dataType:'json',
+			success: function(result){
+				var div = "<div class=\"pinfo col-md-7\"><h3>患者姓名：  " + result.name + "</h3></div>" + "<div class=\"pinfo col-md-5\"><h3>患者住院编号：  " + result.admission_num + "</h3></div>" + "<div class=\"pinfo col-md-7\"><h3>患者身份证号：  " + result.idnum + "</h3></div>" + "<div class=\"pinfo col-md-5\"><h3>主治医生邮箱：  " + result.doctor_email + "</h3></div>";
+				$('#pinfo').append(div);
+			}
+		});
+	});
+</script>
+{% endblock %}

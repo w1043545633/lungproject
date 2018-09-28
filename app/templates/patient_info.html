@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container">
+	<div class="function-header">
+		<h1>请输入相关病人信息</h1>
+	</div>
+	<div class="function-form">
+		<form class="form-horizontal" method="POST">
+			<div class="form-group col-md-5" style="margin-left: 5%;">
+				<label for="name" class="col-md-3 control-label">姓名：</label>
+				<div class="col-md-4">
+					<input type="text" name="name" class=" function-input required" id="name" >
+				</div>
+				<strong class="high">*</strong>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 12%">
+				<label for="birth_date" class="col-md-3 control-label">出生日期：</label>
+				<div class="col-md-4">
+					<input type="text" name="birth_date" class="function-input" id="birth_date" placeholder="2001/01/01">
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 5%;">
+				<label for="name" class="col-md-3 control-label">性别：</label>
+				<div class="function-radio">
+					<input type="radio" name="gender" class=""  value="男" >男
+					<input type="radio" name="gender" class=""  value="女">女
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 12%;">
+				<label for="admission_nume" class="col-md-3 control-label">住院号：</label>
+				<div class="col-md-4">
+					<input type="text" name="admission_num" class="function-input required" id="admission_num" >
+				</div>
+				<strong class="high">*</strong>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 5%
+			;">
+				<label for="idnum" class="col-md-3 control-label">身份证号：</label>
+				<div class="col-md-4">
+					<input type="text" name="idnum" class="function-input required" id="idnum" >
+				</div>
+				<strong class="high">*</strong>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 12%">
+				<label for="hospital" class="col-md-3 control-label">选择医院：</label>
+				<div class="col-md-5" style="padding: 10px 0px 0px 8px;">
+					<select  class="function-select" name="hospital" id="hospital">
+						<option>黄陂妇幼保健院</option>
+						<option>武汉市中南医院</option>
+						<option>湖北省肿瘤医院</option>
+						<option>武汉市协和医院</option>
+						<option>武汉市同济医院</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 5%;">
+				<label for="cancer" class="col-md-3 control-label">癌症分型：</label>
+				<div class="col-md-5" style="padding: 10px 0px 0px 8px;">
+					<select  class="function-select" name="cancer" style="width: 100%">
+						<option>肺鳞癌</option>
+						<option>肺腺癌</option>
+						<option>小细胞肺癌</option>
+						<option>大细胞肺癌</option>
+						<option>类癌</option>
+						<option>细支气管肺泡癌</option>
+						<option>其他</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 12%">
+				<label for="smoke" class="col-md-3 control-label">吸烟史：</label>
+				<div class="col-md-5" style="padding: 10px 0px 0px 8px;">
+					<select  class="function-select" name="smoke">
+						<option>无</option>
+						<option>五年以下</option>
+						<option>5-10年</option>
+						<option>10-20年</option>
+						<option>20-30年</option>
+						<option>30-40年</option>
+						<option>40年以上</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 5%;">
+				<label for="intemperance" class="col-md-3 control-label">酗酒史：</label>
+				<div class="col-md-5" style="padding: 10px 0px 0px 8px;">
+					<select  class="function-select" name="intemperance">
+						<option>无</option>
+						<option>五年以下</option>
+						<option>5-10年</option>
+						<option>10-20年</option>
+						<option>20-30年</option>
+						<option>30-40年</option>
+						<option>40年以上</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 12%;">
+				<label for="take_drug" class="col-md-3 control-label">吸毒史：</label>
+				<div class="col-md-5" style="padding: 10px 0px 0px 8px;">
+					<select  class="function-select" name="take_drug">
+						<option>无</option>
+						<option>五年以下</option>
+						<option>5-10年</option>
+						<option>10-20年</option>
+						<option>20-30年</option>
+						<option>30-40年</option>
+						<option>40年以上</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-5">
+				<label for="other_bad_habits" class="col-md-5 control-label">其他不良生活习惯史：</label>
+				<div class="col-md-4">
+					<input type="text" name="other_bad_habits" class="function-input" id="other_bad_habits" >
+				</div>
+			</div>
+			<div class="form-group col-md-4" style="margin-left: 15%;">
+				<label for="doctor_email" class="col-md-5 control-label">主治医师邮箱：</label>
+				<div class="col-md-4">
+					<input type="text" name="doctor_email" class="function-input" id="doctor_email" >
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 5%;">
+				<label for="national" class="col-md-3 control-label">民族：</label>
+				<div class="col-md-4">
+					<input type="text" name="national" class="function-input" id="national" >
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 12%;">
+				<label for="profession" class="col-md-3 control-label">职业：</label>
+				<div class="col-md-4">
+					<input type="text" name="profession" class="function-input" id="profession" >
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 5%;">
+				<label for="tel" class="col-md-3 control-label">联系方式：</label>
+				<div class="col-md-4">
+					<input type="text" name="tel" class="function-input required" id="tel" >
+				</div>
+				<strong class="high">*</strong>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 12%;">
+				<label for="address" class="col-md-3 control-label">住址：</label>
+				<div class="col-md-4">
+					<input type="text" name="address" class="function-input" id="address" >
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 5%;">
+				<label for="f_member_tel" class="col-md-3 control-label">家属电话：</label>
+				<div class="col-md-4">
+					<input type="text" name="f_member_tel" class="function-input" id="f_member_tel" >
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 12%;">
+				<label for="family_history" class="col-md-3 control-label">家族病史：</label>
+				<div class="col-md-4">
+					<input type="text" name="family_history" class="function-input" id="family_history" >
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 5%;">
+				<label for="operation_history" class="col-md-3 control-label">手术史：</label>
+				<div class="col-md-4">
+					<input type="text" name="operation_history" class="function-input" id="operation_history" >
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 12%;">
+				<label for="injured_history" class="col-md-3 control-label">外伤史：</label>
+				<div class="col-md-4">
+					<input type="text" name="injured_history" class="function-input" id="injured_history" >
+				</div>
+			</div>
+			<div class="form-group col-md-5" style="margin-left: 15px;">
+				<label for="irritability_history" class="col-md-4 control-label">食物药物过敏史：</label>
+				<div class="col-md-4">
+					<input type="text" name="irritability_history" class="function-input" id="irritability_history" >
+				</div>
+			</div>
+
+
+			<div class="col-md-12" style="text-align: center;border-bottom: 1px solid #ccc; margin-bottom: 10px;">
+				<h1>添加病历</h1>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="diagnosis" class="col-md-2 control-label">诊断描述：</label>
+				<textarea class="function-textarea" name="diagnosis" id="diagnosis"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="targeted_therapy" class="col-md-2 control-label">靶向治疗：</label>
+				<textarea class="function-textarea" name="targeted_therapy" id="targeted_therapy"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="radiotherapy" class="col-md-2 control-label">放疗方案：</label>
+				<textarea class="function-textarea" name="radiotherapy" id="radiotherapy"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="state_after_radiotherapy" class="col-md-2 control-label">放疗后状态：</label>
+				<textarea class="function-textarea" name="state_after_radiotherapy" id="state_after_radiotherapy"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="drug_treatment_plan" class="col-md-2 control-label">药物治疗方案：</label>
+				<textarea class="function-textarea" name="drug_treatment_plan" id="drug_treatment_plan"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="state_after_drugtreament" class="col-md-2 control-label">药物治疗后状态：</label>
+				<textarea class="function-textarea" name="state_after_drugtreament" id="state_after_drugtreament"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="clinical_stage" class="col-md-2 control-label">临床分期：</label>
+				<textarea class="function-textarea" name="clinical_stage" id="clinical_stage"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="patient_statement" class="col-md-2 control-label">主述：</label>
+				<textarea class="function-textarea" name="patient_statement" id="patient_statement"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="image_result" class="col-md-2 control-label">影像结果：</label>
+				<textarea class="function-textarea" name="image_result" id="image_result"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="pathological_result" class="col-md-2 control-label">病理结果：</label>
+				<textarea class="function-textarea" name="pathological_result" id="pathological_result"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="pathological_grade" class="col-md-2 control-label">病理分级：</label>
+				<textarea class="function-textarea" name="pathological_grade" id="pathological_grade"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="pathological_examination_result" class="col-md-2 control-label">病理检测结果：</label>
+				<textarea class="function-textarea" name="pathological_examination_result" id="pathological_examination_result"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="genetic_examination_result" class="col-md-2 control-label">基因检测结果：</label>
+				<textarea class="function-textarea" name="genetic_examination_result" id="genetic_examination_result"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="tumor_marker_result" class="col-md-2 control-label">肿瘤标记物结果：</label>
+				<textarea class="function-textarea" name="tumor_marker_result" id="tumor_marker_result"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="operation_time" class="col-md-2 control-label">手术时间：</label>
+				<textarea class="function-textarea" name="operation_time" id="operation_time"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="operation_type" class="col-md-2 control-label">手术类型：</label>
+				<textarea class="function-textarea" name="operation_type" id="operation_type"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="operation_degree" class="col-md-2 control-label">手术切除程度：</label>
+				<textarea class="function-textarea" name="operation_degree" id="operation_degree"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="lymph_state" class="col-md-2 control-label">淋巴结清扫情况：</label>
+				<textarea class="function-textarea" name="lymph_state" id="lymph_state"></textarea>
+			</div>
+			<div class="form-group col-md-4" style="margin-left: 40px;">
+				<label for="diagnostic_time" class="col-md-4 control-label">确诊时间：</label>
+				<div class="col-md-4">
+					<input type="text" name="diagnostic_time" class="function-input" id="diagnostic_time" >
+				</div>
+			</div>
+			<div class="form-group col-md-4" style="margin-top: 5px;">
+				<label for="dead" class="col-md-4 control-label">是否死亡：</label>
+				<div class="function-radio">
+					<input type="radio" name="dead" value='是' >是
+					<input type="radio" name="dead" value="否">否
+				</div>
+			</div>
+			<div class="form-group col-md-4">
+				<label for="death_time" class="col-md-4 control-label">死亡时间：</label>
+				<div class="col-md-4">
+					<input type="text" name="death_time" class="function-input" id="death_time" >
+				</div>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="cause_of_death" class="col-md-2 control-label">死亡原因：</label>
+				<textarea class="function-textarea" name="cause_of_death" id="cause_of_death"></textarea>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-6 col-md-6">
+					<button type="text" class="btn btn-primary" style="width:80px;" id="submit">提交</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript">
+/*	$(":input").blur(function() {
+		var $parent = $(this).parent();
+
+		if($(this).is("#name")){
+			var nameVal = $.trim(this.value);
+			var regName = /[~#^$@%&!*()<>:;'"{}【】  ]/;
+
+			if(nameVal == "" || regName.test(nameVal)){
+				var errorMsg = "姓名非空，不包含特殊字符！";
+				$parent.append("<span class='msg on Error'>" + errorMsg + "</span>");
+			}
+			else {
+				$parent.find(".high").remove();
+
+			}
+			
+		}
+	})*/
+</script>
+<script type="text/javascript">
+	var data={
+		'gender': $("input[name='gender']:checked").val(),
+		'dead': $("input[name='dead']:checked").val()
+		'hospital': $("#hospital option:selected").val(),
+	};
+
+	$.ajax({
+		type: 'POST',
+		url: '{{ url_for('main.patient_info') }}',
+		data: data,
+		dataType: 'json'
+	});
+</script>
+{% endblock %}
+

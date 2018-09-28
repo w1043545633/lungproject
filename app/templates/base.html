@@ -1,0 +1,141 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}TCGA of China Edition{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-inverse base-nav ">
+	<div class="container-fluid">
+		<div class="col-md-3 col-md-offset-5 ">
+			<a href="#" class="h1-a navbar-brand" style="color: #fff">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				理性精准用药推荐系统
+			</a>
+		</div>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="{{ url_for('main.index') }}" class="base-a">返回主界面</a></li>
+			<li><a href="{{ url_for('auth.logout') }}" class="base-a">退出登录</a></li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="col-md-6" style="margin-right: 35px;">
+		<div id="chart"></div>
+	</div>
+	<div class="col-md-5 intro-container">
+		<div class="div-login-header">
+			<h2>系统简介</h2>
+		</div>
+		<div class="introduction">
+			<p>
+				<span class="glyphicon glyphicon-star"></span>
+				百药联科自主研发,首款根据患者个体血液或疾病组织的组学数据，进行精准药物预测的个性化医疗系统。
+			</p>
+			<p>
+				<span class="glyphicon glyphicon-star"></span>
+				基于患者基因表达数据或者表观基因组数据，协助医生对疾病治疗药品进行有效性排序，帮助医生找到对患者最有效的药品。
+			</p>
+		</div>
+	</div>
+</div>
+
+
+{% block function %}
+<div class="container">
+	<div class="function-title">
+		<h1>系统提供的功能</h1>
+		<p>根据不同使用场景设计了四种服务，为医生和数据处理人员提供了友好的界面以及流畅的体验</p>
+	</div>
+	<div class="function-doctor">
+		<div class="col-md-3 col-md-offset-2">
+			<div class="thumbnail">
+				<img src="{{ url_for('static', filename='img/doctor.jpg') }}">
+				<div class="caption">
+					<p class="function-info">上传病人信息数据，为病人个性化用药助力。</p>
+					<p class="function-process"><a href="{{ url_for('main.patient_edit') }}" class="btn btn-primary" role="button">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						录入信息
+					</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="thumbnail">
+				<img src="{{ url_for('static', filename='img/upload.jpg') }}">
+				<div class="caption">
+					<p class="function-info" style="margin-bottom: 110px;">下载并获得病人的特定测序信息。</p>
+					<p class="function-process"><a href="#" class="btn btn-primary" role="button">
+						<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+						数据下载
+					</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="thumbnail">
+				<img src="{{ url_for('static', filename='img/dataProcess.jpg') }}">
+				<div class="caption">
+					<p class="function-info">上传病人表达谱数据，即可获取针对个人的精准用药推荐。</p>
+					<p class="function-process"><a href="#" class="btn btn-primary" role="button">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						获取推荐
+					</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<div class="container-fluid base-footer">
+	<div class="container">
+		<div class="col-md-5">
+			<h3>
+				<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+				联系我们
+			</h3>
+			<p>农业信息工程湖北省重点实验室</p>
+			<p>湖北省武汉市狮子山街1号华中农业大学</p>
+			<p>+86-27-8728-0877</p>
+		</div>
+		<div class="col-md-5 col-md-offset-2">
+			<h3 style="margin-top: 10px;">
+				<span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+				相关链接
+			</h3>
+			<p>
+				<a href="http://ibi.hzau.edu.cn/generank_drug_screen/index.php" class="footer-link">
+					A Generank-Based Method For Personalized Drug Screen
+				</a>
+			</p>
+			<p>
+				<a href="http://scgdrug.systemsgenetics.cn/" class="footer-link">
+					System Chemical Genetic-Drug
+				</a>
+			</p>
+			<p>
+				<a href="http://ibi.hzau.edu.cn/" class="footer-link">
+					Center for Bioinformatics of Huazhong Agricultural University
+				</a>
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript" src="{{ url_for('static', filename='js/highcharts.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/index_charts.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.cookie.js') }}"></script>
+{% endblock %}
+
