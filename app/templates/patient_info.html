@@ -280,7 +280,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-md-offset-6 col-md-6">
-					<button type="text" class="btn btn-primary" style="width:80px;" id="submit">提交</button>
+					<button type="submit" class="btn btn-primary" style="width:80px;" id="submit">提交</button>
 				</div>
 			</div>
 		</form>
@@ -311,18 +311,18 @@
 	})*/
 </script>
 <script type="text/javascript">
-	var data={
-		'gender': $("input[name='gender']:checked").val(),
-		'dead': $("input[name='dead']:checked").val()
-		'hospital': $("#hospital option:selected").val(),
-	};
+/*	var data={
+	'gender': $("input[name='gender']:checked").val(),
+	'dead': $("input[name='dead']:checked").val()
+	'hospital': $("#hospital option:selected").val(),
+};
 
-	$.ajax({
-		type: 'POST',
-		url: '{{ url_for('main.patient_info') }}',
-		data: data,
-		dataType: 'json'
-	});
+$.ajax({
+	type: 'POST',
+	url: '{{ url_for('main.patient_info') }}',
+	data: data,
+	dataType: 'json'
+}); -->
 </script>
 {% endblock %}
 

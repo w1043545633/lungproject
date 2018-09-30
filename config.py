@@ -17,7 +17,8 @@ class DevelopmentConfig(Config):
 	DEBUG = True
 	SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
 								"mysql://root:root@localhost:3306/dev_db"
-	UPLOADED_PHOTOS_DEST = os.path.join(os.path.dirname(os.path.realpath(__file__)), "biofiles") 
+	# UPLOADED_TEST_DEST = os.path.join(os.path.dirname(os.path.realpath(__file__)), "biofiles") 
+	UPLOAD_FOLDER = os.path.join(os.getcwd(), "biofiles")
 
 class TestingConfig(Config):
 	TESTING = True

@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-  
 
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, current_app
 from . import main
 from flask_login import login_required
 from ..decorators import admin_required, permission_required
@@ -8,6 +8,8 @@ from ..models import Permission
 from forms import PatientBaseInfoForm
 from ..models import Patient
 from .. import db
+from werkzeug.utils import secure_filename
+import os
 import json
 
 
@@ -123,7 +125,7 @@ def file_upload():
 @main.route('/file_pinfo', methods=['GET', 'POST'])
 def file_pinfo():
 	save_id = request.form.get("save_id")
-	patient = Patient.query.filter_by(id=save_id).first();
+	patient = Patient.query.filter_by(id=save_id).first()
 	l = {
 		"name":patient.name,
 		"admission_num": patient.admission_num,
@@ -131,5 +133,43 @@ def file_pinfo():
 		"doctor_email": patient.doctor_email
 		}
 	return jsonify(l)
+
+@main.route("/biofiles", methods=['GET', 'POST'])
+def biofiles():
+	ALLOWED_EXTENSIONS = set(['txt'])
+
+	def allowed_file(filename):
+		return '.' in filename and \
+				filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+	ref_file = request.files['ref_data']
+	exp_file = request.files['exp_data']
+	save_id = request.form.get("saveid")
+	p = Patient.query.filter_by(id=save_id).first()
+	p.data_type = request.form.get('data_type')
+	p.public = request.form.get('public')
+	p.sample_name = request.form.get('sample_name')
+	p.upl_name = request.form.get('upl_name')
+	p.pro_name = request.form.get('pro_name')
+	if ref_file and allowed_file(ref_file.filename):
+		refname = save_id + "ref" + secure_filename(ref_file.filename)
+		p.ref_data = os.path.join(current_app.config['UPLOAD_FOLDER'], refname)
+		p.refdata_exist = "yes"
+		ref_file.save(p.ref_data)
+
+	if exp_file and allowed_file(exp_file.filename):
+		expname = save_id + "exp" + secure_filename(exp_file.filename)
+		p.exp_data = os.path.join(current_app.config['UPLOAD_FOLDER'], expname)
+		p.expdata_exist = "yes"
+		exp_file.save(p.exp_data)
+
+	db.session.add(p)
+	db.session.commit()
+	return 'ok!'
+
+
+
+
+
 
 

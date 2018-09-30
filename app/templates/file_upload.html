@@ -11,18 +11,18 @@
 		<div class="col-md-12" id="pinfo">
 		</div>
 
-		<form class="form-inline col-md-12" id="file-upload" enctype="multipart/form-data">
+		<form class="form-inline col-md-12" id="file-upload" enctype="multipart/form-data" method="POST" action="/biofiles">
 			<div class="form-group col-md-3 col-md-offset-1 file-group">
 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				<input type="text" class="form-control file-input" placeholder="上传者姓名">
+				<input type="text" class="form-control file-input" placeholder="上传者姓名" name="upl_name">
 			</div>
 			<div class="form-group col-md-4">
 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				<input type="text" class="form-control file-input" placeholder="处理数据人员姓名">
+				<input type="text" class="form-control file-input" placeholder="处理数据人员姓名" name="pro_name">
 			</div>
 			<div class="form-group col-md-4">
 				<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-				<input type="text" class="form-control file-input" placeholder="样本序列号">
+				<input type="text" class="form-control file-input" placeholder="样本序列号" name="sample_name">
 			</div>
 			<div class="form-group col-md-5 col-md-offset-1">
 				<label class="control-label col-md-3 ">是否公开：</label>
@@ -39,9 +39,15 @@
 				</div>
 			</div>
 			<div class="form-group col-md-5">
-				<input type="file" name="">
+				<input type="file" name="exp_data">
 			</div>
-
+			<div class="form-group col-md-5">
+				<input type="file" name="ref_data">
+			</div>
+			<input type="hidden" name="saveid" id="saveid">
+			<div class="from-group">
+				<button type="submit" class="btn btn-primary" id="file_commit">提交</button>
+			</div>
 		</form>
 	</div>
 
@@ -63,8 +69,21 @@
 			success: function(result){
 				var div = "<div class=\"pinfo col-md-7\"><h3>患者姓名：  " + result.name + "</h3></div>" + "<div class=\"pinfo col-md-5\"><h3>患者住院编号：  " + result.admission_num + "</h3></div>" + "<div class=\"pinfo col-md-7\"><h3>患者身份证号：  " + result.idnum + "</h3></div>" + "<div class=\"pinfo col-md-5\"><h3>主治医生邮箱：  " + result.doctor_email + "</h3></div>";
 				$('#pinfo').append(div);
+
+				$('#saveid').val($.cookie("save_id"));
 			}
 		});
+
+/*		$("#file_commit").on('click', function(){
+			$.ajax({
+				type:'GET',
+				url:'/biofiles',
+				data:data,
+				dataType:'json'
+			});
+
+			$('form').submit();
+		});*/
 	});
 </script>
 {% endblock %}
