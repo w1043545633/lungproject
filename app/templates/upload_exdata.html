@@ -7,7 +7,7 @@
 		<p>提供病人信息的添加，删除，查看以及编辑功能</p>
 	</div>
 	<div class="form-inline col-md-12 patient-edit">
-		<div class="form-group col-md-3 col-md-offset-3">
+		<div class="form-group col-md-4 col-md-offset-3">
 			<span class="glyphicon glyphicon-search function-search"></span>
 			<input type="text" name="query_idnum" class="function-input edit-input" placeholder="请输入身份证号">
 			<a type="button" class="btn btn-info edit-btn">搜索</a>
@@ -73,7 +73,7 @@
 						content = content + "</td><td>" + "<span class=\"glyphicon glyphicon-remove\"></span>" ;
 					}
 
-					if (result[i].public == "yes"){
+					if (result[i].public == "是"){
 						content = content + "</td><td>" + "<span class=\"glyphicon glyphicon-ok\"></span>" ;
 					} else {
 						content = content + "</td><td>" + "<span class=\"glyphicon glyphicon-remove\"></span>" ;

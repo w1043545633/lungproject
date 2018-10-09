@@ -230,9 +230,6 @@
 	padding-top: 30px;
 }
 
-#file-upload div {
-	margin-bottom: 50px;
-}
 
 #is_public {
 	margin-top: -2px;
@@ -242,4 +239,29 @@
 #data_type {
 	margin-top: -2px;
 	margin-left: -60px;
+}
+
+#file-upload div {
+	margin-bottom: 50px;
+}
+
+.input-append {
+	margin-top: -50px;
+}
+
+#file_commit {
+	margin-top: -50px;
+}
+
+.patient-edit div {
+	padding-bottom: 30px;
+}
+
+.patient-edit div a {
+	width: 80px;
+}
+
+#patient-edit-form {
+	margin-top: 80px;
+	margin-bottom: 50px;
 }

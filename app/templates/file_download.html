@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fuild">
+	<!-- header -->
+	<div class="function-header">
+		<h1>病人表达谱数据下载</h1>
+		<p>提供病人信息下载和搜索界面</p>
+	</div>
+	<!-- form for serach -->
+	<form class="form-inline col-md-12 patient-edit">
+		<div class="form-group col-md-5">
+			<span class="glyphicon glyphicon-search function-search"></span>
+			<input type="text" name="" class="function-input edit-input" placeholder="请输入身份证号">
+			<a type="button" class="btn btn-info edit-btn btn-lg">搜索</a>
+		</div>
+		<div class="form-group col-md-5">
+			<span class="glyphicon glyphicon-search function-search"></span>
+			<input type="text" name="" class="function-input edit-input" placeholder="请输入姓名">
+			<a type="button" class="btn btn-info edit-btn btn-lg">搜索</a>
+		</div>
+		<div class="form-group col-md-5">
+			<span class="glyphicon glyphicon-search function-search"></span>
+			<input type="text" name="" class="function-input edit-input" placeholder="请输入住院号">
+			<a type="button" class="btn btn-info edit-btn btn-lg">搜索</a>
+		</div>
+		<div class="form-group col-md-5">
+			<span class="glyphicon glyphicon-search function-search"></span>
+			<input type="text" name="" class="function-input edit-input" placeholder="请输入储存编号">
+			<a type="button" class="btn btn-info edit-btn btn-lg">搜索</a>
+		</div>
+	</form>
+
+	<!-- table -->
+	<div class="container">
+		<div class="col-md-12 btn-container">
+			<a class="btn btn-success edit-mainfunc">一共有n例样本</a>
+		</div>
+
+		<div>
+			<table class="table" id="TB">
+				<thead>
+					<tr>
+						<th>存储编号</th>
+						<th>姓名</th>
+						<th>癌症分型</th>
+						<th>住院号</th>
+						<th>是否死亡</th>
+						<th>数据上传人员</th>
+						<th>数据处理人员</th>
+						<th>数据类型</th>
+						<th>是否公开</th>
+						<th>数据上传时间</th>
+						<th>下载</th>
+					</tr>
+				</thead>
+				<tbody id="tbody-result">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript">
+	$(function() {
+		$.ajax({
+			type:"GET",
+			url:'/file_download_table',
+			data:{},
+			dataType: 'json',
+			success: function(result) {
+				var content = "";
+				var btn = "";
+				var info = "";
+				for (var i = 0; i < result.length; i++){
+					content = "<tr><td class=\"save_id\">" + result[i].id + "</td><td>" + result[i].name + "</td><td>" + result[i].cancer + "</td><td>" + result[i].admission_num + "</td><td>" + result[i].dead + "</td><td>" + result[i].upl_name + "</td><td>" + result[i].pro_name + "</td><td>" + result[i].data_type + "</td><td>" + result[i].public + "</td><td>" + "2018-05-31 15:24:50" + "</td><td>";
+
+					btn = "<a type=\"button\" class=\"btn btn-info btn-upload\" id=\"download_exp\"><span class=\"glyphicon glyphicon-save\" aria-hidden=\"true\"></span>下载数据</a>" + "</td><td>" + "</td><td>" + "<a type=\"button\" class=\"btn btn-info btn-upload\" id=\"download_ref\"><span class=\"glyphicon glyphicon-save\" aria-hidden=\"true\"></span>下载对照</a>" + "</td></tr>";
+					info = content + btn;
+					$("#TB tbody").append($(info));
+				}
+			}
+		});
+
+		$('body').on("click", '#download_exp', function(){
+			var save_id = $(this).parent().siblings('.save_id').text();
+			save_id = save_id + '_exp';
+			window.location.href = '/file_download/' + save_id;
+		});
+
+		$('body').on("click", '#download_ref', function(){
+			var save_id = $(this).parent().siblings('.save_id').text();
+			save_id = save_id + '_ref';
+			window.location.href = '/file_download/' + save_id;
+		});
+	});
+</script>
+{% endblock %}

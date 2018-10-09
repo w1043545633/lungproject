@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-  
 
-from flask import render_template, request, jsonify, current_app
+from flask import render_template, request, jsonify, current_app, send_file, send_from_directory
 from . import main
 from flask_login import login_required
 from ..decorators import admin_required, permission_required
@@ -165,7 +165,73 @@ def biofiles():
 
 	db.session.add(p)
 	db.session.commit()
-	return 'ok!'
+	return 'ok！'
+
+
+@main.route('/file_download', methods=['GET', 'POST'])
+def file_download():
+	return render_template('file_download.html')
+
+@main.route('/file_download_table', methods=['GET', 'POST'])
+def file_download_table():
+	plist = Patient.query.filter_by(expdata_exist='yes', refdata_exist='yes').all()
+	jlist = []
+	for p in plist:
+		l = {
+			"id": p.id,
+			"name": p.name,
+			"cancer": p.cancer,
+			"admission_num": p.admission_num,
+			"dead": p.dead,
+			"upl_name": p.upl_name,
+			"pro_name": p.pro_name,
+			"data_type": p.data_type,
+			"public": p.public
+		}
+		jlist.append(l)
+	return jsonify(jlist)
+
+
+@main.route('/file_download/<saveid>', methods=['GET', 'POST'])
+def download(saveid):
+	pid = saveid.split('_', 1)
+	p = Patient.query.filter_by(id=pid[0]).first()
+	if pid[1] == 'exp':
+		directory = os.path.dirname(p.exp_data)
+		filename = os.path.basename(p.exp_data)
+	else:
+		directory = os.path.dirname(p.ref_data)
+		filename = os.path.basename(p.ref_data)
+	return send_from_directory(directory, filename, as_attachment=True)
+
+
+@main.route('/patient_edit_search', methods=['GET', 'POST'])
+def patient_edit_search():
+	if request.form.get('query_idnum'):
+		plist = Patient.query.filter_by(id=request.form.get('query_idnum')).all()
+	elif request.form.get('query_name'):
+		plist = Patient.query.filter_by(name=request.form.get('query_name')).all()
+	elif request.form.get('query_admissionnum'):
+		plist = Patient.query.filter_by(admission_num=request.form.get('query_admissionnum')).all()
+	else:
+		return 'No words commit!'
+	jlist = []
+	for p in plist:
+		l = {
+			"name": p.name, 
+			"admission_num": p.admission_num,
+			"dead": p.dead,
+			"cancer": p.cancer,
+			"id": p.id,
+			"sample_name": p.sample_name,
+			"expdata_exist": p.expdata_exist,
+			"refdata_exist": p.refdata_exist,
+			"public": p.public
+			}
+		jlist.append(l)
+	return jsonify(jlist)
+
+
 
 
 
